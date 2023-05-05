@@ -131,13 +131,17 @@ function addItem(e){
     console.log(newItem);
     var li=document.createElement('li');
     var button=document.createElement('button');
-    button.className+='btn btn-danger btn-sm float-end delete'
+    var update=document.createElement('button')
+    update.className+='btn btn-dark btn-sm float-end update mx-4 fs-5 '
+    update.appendChild(document.createTextNode('Update'))
+    button.className+='btn btn-danger btn-sm float-end delete fs-5'
    button.appendChild(document.createTextNode('X'))
     li.className='list-group-item';
     var textNode=document.createTextNode(newItem.value);
     li.appendChild(textNode);
    itemList.appendChild(li)
    li.appendChild(button)
+   li.appendChild(update)
 }
 
 itemList.addEventListener('click',del)
@@ -147,4 +151,15 @@ function del(e) {
     itemList.removeChild(li)
 }
     
+}
+itemList.addEventListener('click',update)
+function update(e){
+    ;
+    if(e.target.classList.contains('update')){
+        let updatedValue=prompt('Enter updated value')
+        console.log(updatedValue);
+      let li= e.target.parentElement; 
+      li.childNodes[0].data=updatedValue;
+       
+    }
 }
